@@ -12,6 +12,8 @@
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,9 +54,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\CSharpFormat.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NetReflector, Version=1.1.2009.1214, Culture=neutral, PublicKeyToken=2f4dd8b32acbcd8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NetReflector.dll</HintPath>
+    </Reference>
+    <Reference Include="Scintilla.NET, Version=5.3.2.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Scintilla.NET.5.3.2.9\lib\net45\Scintilla.NET.dll</HintPath>
     </Reference>
     <Reference Include="ScintillaNet, Version=2.0.3138.25704, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,7 +70,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -115,6 +123,7 @@
     </Compile>
     <None Include="app.config" />
     <EmbeddedResource Include="Help.txt" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,4 +192,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\packages\Scintilla.NET.5.3.2.9\build\scintilla.net.targets" Condition="Exists('..\packages\Scintilla.NET.5.3.2.9\build\scintilla.net.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Scintilla.NET.5.3.2.9\build\scintilla.net.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Scintilla.NET.5.3.2.9\build\scintilla.net.targets'))" />
+  </Target>
 </Project>

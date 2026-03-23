@@ -370,9 +370,9 @@ namespace Validator
         {
             using (StreamReader sr = new StreamReader(myFileName))
             {
-                xmlDisplay.IsReadOnly = false;
+                xmlDisplay.ReadOnly = false;
                 xmlDisplay.Text = sr.ReadToEnd();
-                xmlDisplay.IsReadOnly = true;
+                xmlDisplay.ReadOnly = true;
             }
         }
 
@@ -451,16 +451,16 @@ namespace Validator
             }
             writer.WriteEndElement();
 
-            processedDisplay.IsReadOnly = false;
+            processedDisplay.ReadOnly = false;
             processedDisplay.Text = buffer.ToString();
-            processedDisplay.IsReadOnly = true;
+            processedDisplay.ReadOnly = true;
         }
 
         private void ClearProcessed()
         {
-            processedDisplay.IsReadOnly = false;
+            processedDisplay.ReadOnly = false;
             processedDisplay.Text = string.Empty;
-            processedDisplay.IsReadOnly = true;
+            processedDisplay.ReadOnly = true;
         }
 
         private object ValidateElement(HtmlElement tableEl, XmlNode node, int row, Configuration configuration)

@@ -48,9 +48,9 @@
             this.validationResults = new System.Windows.Forms.WebBrowser();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.xmlDisplay = new ScintillaNet.Scintilla();
+            this.xmlDisplay = new ScintillaNET.Scintilla();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.processedDisplay = new ScintillaNet.Scintilla();
+            this.processedDisplay = new ScintillaNET.Scintilla();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.configurationHierarchy = new Validator.ConfigurationHierarchy();
             this.localImages = new System.Windows.Forms.ImageList(this.components);
@@ -272,18 +272,17 @@
             // 
             // xmlDisplay
             // 
-            this.xmlDisplay.ConfigurationManager.Language = "xml";
+            this.xmlDisplay.LexerLanguage = "xml";
             this.xmlDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xmlDisplay.Indentation.TabWidth = 4;
-            this.xmlDisplay.IsReadOnly = true;
+            this.xmlDisplay.TabWidth = 4;
+            this.xmlDisplay.ReadOnly = true;
             this.xmlDisplay.Location = new System.Drawing.Point(0, 0);
-            this.xmlDisplay.Margins.Margin0.Width = 37;
-            this.xmlDisplay.Margins.Margin1.Width = 0;
-            this.xmlDisplay.Margins.Margin2.Width = 12;
+            this.xmlDisplay.Margins[0].Width = 37;
+            this.xmlDisplay.Margins[1].Width = 0;
+            this.xmlDisplay.Margins[2].Width = 12;
             this.xmlDisplay.Name = "xmlDisplay";
             this.xmlDisplay.Size = new System.Drawing.Size(352, 278);
             this.xmlDisplay.TabIndex = 0;
-            this.xmlDisplay.UndoRedo.IsUndoEnabled = false;
             // 
             // tabPage2
             // 
@@ -300,18 +299,17 @@
             // 
             // processedDisplay
             // 
-            this.processedDisplay.ConfigurationManager.Language = "xml";
+            this.processedDisplay.LexerLanguage = "xml";
             this.processedDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.processedDisplay.Indentation.TabWidth = 4;
-            this.processedDisplay.IsReadOnly = true;
+            this.processedDisplay.TabWidth = 4;
+            this.processedDisplay.ReadOnly = true;
             this.processedDisplay.Location = new System.Drawing.Point(0, 0);
-            this.processedDisplay.Margins.Margin0.Width = 37;
-            this.processedDisplay.Margins.Margin1.Width = 0;
-            this.processedDisplay.Margins.Margin2.Width = 12;
+            this.processedDisplay.Margins[0].Width = 37;
+            this.processedDisplay.Margins[1].Width = 0;
+            this.processedDisplay.Margins[2].Width = 12;
             this.processedDisplay.Name = "processedDisplay";
             this.processedDisplay.Size = new System.Drawing.Size(352, 278);
             this.processedDisplay.TabIndex = 1;
-            this.processedDisplay.UndoRedo.IsUndoEnabled = false;
             // 
             // tabPage3
             // 
@@ -534,8 +532,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private ScintillaNet.Scintilla xmlDisplay;
-        private ScintillaNet.Scintilla processedDisplay;
+        private ScintillaNET.Scintilla xmlDisplay;
+        private ScintillaNET.Scintilla processedDisplay;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton buttonOpen;
