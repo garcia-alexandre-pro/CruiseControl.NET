@@ -95,10 +95,10 @@ namespace ThoughtWorks.CruiseControl.UnitTests.Core.Sourcecontrol
 				mods[2].FolderName.Should().Be(Path.GetDirectoryName(file3), "FolderName[2]");
 				mods[3].FolderName.Should().Be(Path.GetFileName(tempSubRoot.ToString()), "FolderName[3]");
 
-				new FileInfo(file1).LastWriteTime.Should().BeCloseTo(mods[0].ModifiedTime,  100, "LastWriteTime[0]");
-				new FileInfo(file2).LastWriteTime.Should().BeCloseTo(mods[1].ModifiedTime, 100, "LastWriteTime[1]");
-				new FileInfo(file3).LastWriteTime.Should().BeCloseTo(mods[2].ModifiedTime, 100, "LastWriteTime[2]");
-				new FileInfo(tempSubRoot.ToString()).LastWriteTime.Should().BeCloseTo(mods[3].ModifiedTime, 100, "LastWriteTime[3]");
+				new FileInfo(file1).LastWriteTime.Should().BeCloseTo(mods[0].ModifiedTime,  new TimeSpan(100), "LastWriteTime[0]");
+				new FileInfo(file2).LastWriteTime.Should().BeCloseTo(mods[1].ModifiedTime, new TimeSpan(100), "LastWriteTime[1]");
+				new FileInfo(file3).LastWriteTime.Should().BeCloseTo(mods[2].ModifiedTime, new TimeSpan(100), "LastWriteTime[2]");
+				new FileInfo(tempSubRoot.ToString()).LastWriteTime.Should().BeCloseTo(mods[3].ModifiedTime, new TimeSpan(100), "LastWriteTime[3]");
 			}
 
             mods = sc.GetModifications(IntegrationResult(DateTime.Now.AddHours(1)), IntegrationResult(DateTime.MaxValue));
@@ -185,9 +185,9 @@ namespace ThoughtWorks.CruiseControl.UnitTests.Core.Sourcecontrol
 				mods[1].FolderName.Should().Be(Path.GetDirectoryName(file2));
 				mods[2].FolderName.Should().Be(Path.GetFileName(tempSubRoot.ToString()));
 
-				new FileInfo(file1).LastWriteTime.Should().BeCloseTo(mods[0].ModifiedTime, 100);
-				new FileInfo(file2).LastWriteTime.Should().BeCloseTo(mods[1].ModifiedTime, 100);
-				new FileInfo(tempSubRoot.ToString()).LastWriteTime.Should().BeCloseTo(mods[2].ModifiedTime, 100);
+				new FileInfo(file1).LastWriteTime.Should().BeCloseTo(mods[0].ModifiedTime, new TimeSpan(100));
+				new FileInfo(file2).LastWriteTime.Should().BeCloseTo(mods[1].ModifiedTime, new TimeSpan(100));
+				new FileInfo(tempSubRoot.ToString()).LastWriteTime.Should().BeCloseTo(mods[2].ModifiedTime, new TimeSpan(100));
 			}
 
             mods = sc.GetModifications(IntegrationResult(DateTime.Now.AddHours(1)), IntegrationResult(DateTime.MaxValue));
