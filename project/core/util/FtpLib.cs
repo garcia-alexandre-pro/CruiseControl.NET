@@ -1,4 +1,6 @@
 ﻿
+using EnterpriseDT.Net.Ftp;
+
 namespace ThoughtWorks.CruiseControl.Core.Util
 {
     /// <summary>
@@ -95,7 +97,6 @@ namespace ThoughtWorks.CruiseControl.Core.Util
         /// <remarks></remarks>
         public void LogIn(string serverName, string userName, string password, bool activeConnectionMode)
         {
-
             Log.Info("Connecting to {0} ...", serverName);
 
             {
@@ -128,10 +129,9 @@ namespace ThoughtWorks.CruiseControl.Core.Util
         /// <remarks></remarks>
         public void DownloadFolder(string localFolder, string remoteFolder, bool recursive)
         {
-
             this.ftpServer.ChangeWorkingDirectory(remoteFolder);
 
-            var ftpServerFileInfo = this.ftpServer.GetFileInfos();
+            FTPFile[] ftpServerFileInfo = this.ftpServer.GetFileInfos();
 
             var fi = default(System.IO.FileInfo);
 
@@ -192,7 +192,6 @@ namespace ThoughtWorks.CruiseControl.Core.Util
                             {
                                 downloadFile = true;
                                 System.IO.File.Delete(localFile);
-
                             }
                         }
                     }
@@ -208,9 +207,7 @@ namespace ThoughtWorks.CruiseControl.Core.Util
                         fi.LastAccessTime = currentFileOrDirectory.LastModified;
                         fi.LastWriteTime = currentFileOrDirectory.LastModified;
                     }
-
                 }
-
             }
         }
 
@@ -431,7 +428,6 @@ namespace ThoughtWorks.CruiseControl.Core.Util
 
         private bool FileExistsAtFtp(EnterpriseDT.Net.Ftp.FTPFile[] ftpServerFileInfo, string localFileName)
         {
-
             bool found = false;
 
             foreach (EnterpriseDT.Net.Ftp.FTPFile currentFileOrDirectory in ftpServerFileInfo)
@@ -530,7 +526,6 @@ namespace ThoughtWorks.CruiseControl.Core.Util
             {
                 callingTask.CurrentStatus.ChildItems.RemoveAt(0);
             }
-
         }
     }
 }
