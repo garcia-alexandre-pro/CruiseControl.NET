@@ -98,7 +98,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             }
 
             Log("Checking the data");
-
         }
 
         [Test]
