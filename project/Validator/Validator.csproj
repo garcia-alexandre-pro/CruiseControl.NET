@@ -62,10 +62,6 @@
     <Reference Include="Scintilla.NET, Version=5.3.2.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Scintilla.NET.5.3.2.9\lib\net45\Scintilla.NET.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNet, Version=2.0.3138.25704, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ScintillaNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
