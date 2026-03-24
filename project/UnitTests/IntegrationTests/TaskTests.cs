@@ -193,16 +193,14 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             CCNet.Remote.ProjectStatus ps = null;
 
             // checking data of project 1
-            foreach (var p in psr.Projects)
+            foreach (ProjectStatus p in psr.Projects)
             {
                 if (p.Name == ProjectName1) ps = p;
             }
 
             Assert.AreEqual(ProjectName1, ps.Name);
             Assert.AreEqual(CCNet.Remote.IntegrationStatus.Success, ps.BuildStatus, "wrong build state for project " + ProjectName1);
-
         }
-
 
         [Test]
         public void RunNantWhenFailureUsersHaveQuoutesInTheirNames()
@@ -224,14 +222,14 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             System.IO.File.Delete(ProjectStateFile);
 
             string NantBuildFile = @"IntegrationScenarios\Nant.Build";
-            var NantExeLocation = "";
+            string NantExeLocation = "";
 
 #if DEBUG
             NantExeLocation = @"..\..\..\..\Tools\Nant\nant.exe";
 #else
             NantExeLocation = @"..\..\Tools\Nant\nant.exe";
 #endif
-            var configFileData = System.IO.File.ReadAllText(CCNetConfigFile);
+            string configFileData = System.IO.File.ReadAllText(CCNetConfigFile);
             configFileData = configFileData.Replace("WillBeReplacedViaTheTest", NantExeLocation);
             System.IO.File.WriteAllText(CCNetConfigFile, configFileData);
 
@@ -263,9 +261,8 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             CCNet.Core.CruiseServerFactory csf = new CCNet.Core.CruiseServerFactory();
 
             Log("Making cruiseServer with config from :" + CCNetConfigFile);
-            using (var cruiseServer = csf.Create(true, CCNetConfigFile))
+            using (ICruiseServer cruiseServer = csf.Create(true, CCNetConfigFile))
             {
-
                 // subscribe to integration complete to be able to wait for completion of a build
                 cruiseServer.IntegrationCompleted += new EventHandler<ThoughtWorks.CruiseControl.Remote.Events.IntegrationCompletedEventArgs>(CruiseServerIntegrationCompleted);
 
@@ -318,7 +315,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
                 Log("waiting for cruiseServer to stop");
                 cruiseServer.WaitForExit(pr1);
                 Log("cruiseServer stopped");
-
             }
 
             Log("Checking the data");
@@ -332,7 +328,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
 
             Assert.AreEqual(ProjectName1, ps.Name);
             Assert.AreEqual(CCNet.Remote.IntegrationStatus.Success, ps.BuildStatus, "wrong build state for project " + ProjectName1);
-
         }
 
 
@@ -359,6 +354,5 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
                 throw new CCNet.Core.CruiseControlException(message);
             }
         }
-
     }
 }
