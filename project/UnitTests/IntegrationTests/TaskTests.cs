@@ -3,7 +3,6 @@ using NUnit.Framework;
 using ThoughtWorks.CruiseControl.Remote;
 using CCNet = ThoughtWorks.CruiseControl;
 
-
 namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
 {
     /// <summary>
@@ -15,7 +14,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
     [Category("Integration")]
     public class TaskTests
     {
-
         [OneTimeSetUp]
         public void fixLog4Net()
         {
@@ -60,7 +58,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             Log("Making cruiseServer with config from :" + CCNetConfigFile);
             using (ICruiseServer cruiseServer = csf.Create(true, CCNetConfigFile))
             {
-
                 // subscribe to integration complete to be able to wait for completion of a build
                 cruiseServer.IntegrationCompleted += new EventHandler<ThoughtWorks.CruiseControl.Remote.Events.IntegrationCompletedEventArgs>(CruiseServerIntegrationCompleted);
 
@@ -94,7 +91,6 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
                 Log("waiting for cruiseServer to stop");
                 cruiseServer.WaitForExit(pr1);
                 Log("cruiseServer stopped");
-
             }
 
             Log("Checking the data");
@@ -118,14 +114,14 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             System.IO.Directory.CreateDirectory(workingDirectory);
 
             string NantBuildFile = @"IntegrationScenarios\Nant.Build";
-            var NantExeLocation = "";
+            string NantExeLocation = "";
 
 #if DEBUG
             NantExeLocation = @"..\..\..\..\Tools\Nant\nant.exe";
 #else
             NantExeLocation = @"..\..\Tools\Nant\nant.exe";
 #endif
-            var configFileData = System.IO.File.ReadAllText(CCNetConfigFile);
+            string configFileData = System.IO.File.ReadAllText(CCNetConfigFile);
             configFileData = configFileData.Replace("WillBeReplacedViaTheTest", NantExeLocation);
             System.IO.File.WriteAllText(CCNetConfigFile, configFileData);
 
@@ -150,9 +146,8 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             CCNet.Core.CruiseServerFactory csf = new CCNet.Core.CruiseServerFactory();
 
             Log("Making cruiseServer with config from :" + CCNetConfigFile);
-            using (var cruiseServer = csf.Create(true, CCNetConfigFile))
+            using (ICruiseServer cruiseServer = csf.Create(true, CCNetConfigFile))
             {
-
                 // subscribe to integration complete to be able to wait for completion of a build
                 cruiseServer.IntegrationCompleted += new EventHandler<ThoughtWorks.CruiseControl.Remote.Events.IntegrationCompletedEventArgs>(CruiseServerIntegrationCompleted);
 
