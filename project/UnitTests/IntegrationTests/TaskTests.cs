@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using ThoughtWorks.CruiseControl.Remote;
 using CCNet = ThoughtWorks.CruiseControl;
 
 
@@ -57,7 +58,7 @@ namespace ThoughtWorks.CruiseControl.UnitTests.IntegrationTests
             CCNet.Core.CruiseServerFactory csf = new CCNet.Core.CruiseServerFactory();
 
             Log("Making cruiseServer with config from :" + CCNetConfigFile);
-            using (var cruiseServer = csf.Create(true, CCNetConfigFile))
+            using (ICruiseServer cruiseServer = csf.Create(true, CCNetConfigFile))
             {
 
                 // subscribe to integration complete to be able to wait for completion of a build
